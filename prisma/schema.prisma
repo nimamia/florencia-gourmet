@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EstadoProducto {
+  ACTIVO
+  INACTIVO
+}
+
+enum EstadoPedido {
+  PENDIENTE
+  PAGADO
+  ENVIADO
+  ENTREGADO
+  CANCELADO
+}
+
+model Categoria {
+  id          String     @id @default(cuid())
+  nombre      String     @unique
+  slug        String     @unique
+  descripcion String?
+  productos   Producto[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Producto {
+  id          String           @id @default(cuid())
+  nombre      String
+  slug        String           @unique
+  descripcion String
+  precio      Decimal          @db.Decimal(10, 2)
+  stock       Int              @default(0)
+  estado      EstadoProducto   @default(ACTIVO)
+  destacado   Boolean          @default(false)
+  categoriaId String
+  categoria   Categoria        @relation(fields: [categoriaId], references: [id])
+  imagenes    ImagenProducto[]
+  itemsPedido ItemPedido[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([categoriaId])
+}
+
+model ImagenProducto {
+  id         String   @id @default(cuid())
+  productoId String
+  producto   Producto @relation(fields: [productoId], references: [id], onDelete: Cascade)
+  url        String
+  altText    String?
+  orden      Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model Pedido {
+  id                  String       @id @default(cuid())
+  numeroOrden         String       @unique
+  estado              EstadoPedido @default(PENDIENTE)
+  clienteNombre       String
+  clienteEmail        String
+  clienteTelefono     String
+  direccion           String
+  distrito            String
+  referencia          String?
+  subtotal            Decimal      @db.Decimal(10, 2)
+  costoEnvio          Decimal      @db.Decimal(10, 2) @default(0)
+  total               Decimal      @db.Decimal(10, 2)
+  culqiChargeId       String?
+  metodoPago          String?
+  notas               String?
+  emailClienteEnviado Boolean      @default(false)
+  emailAdminEnviado   Boolean      @default(false)
+  items               ItemPedido[]
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  @@index([estado])
+  @@index([createdAt])
+}
+
+model ItemPedido {
+  id             String    @id @default(cuid())
+  pedidoId       String
+  pedido         Pedido    @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  productoId     String?
+  producto       Producto? @relation(fields: [productoId], references: [id], onDelete: SetNull)
+  nombreProducto String
+  precioUnitario Decimal   @db.Decimal(10, 2)
+  cantidad       Int
+  subtotal       Decimal   @db.Decimal(10, 2)
+}
+
+model UsuarioAdmin {
+  id        String   @id
+  email     String   @unique
+  nombre    String
+  activo    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
