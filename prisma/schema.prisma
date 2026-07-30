@@ -28,6 +28,7 @@ model Categoria {
   nombre      String     @unique
   slug        String     @unique
   descripcion String?
+  orden       Int        @default(0)
   productos   Producto[]
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt

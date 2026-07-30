@@ -9,7 +9,7 @@ import { subirImagenProducto, eliminarImagenProducto } from "@/lib/supabase/stor
 type ResultadoAccion = { ok: true } | { ok: false; error: string };
 
 export async function obtenerCategorias() {
-  return prisma.categoria.findMany({ orderBy: { nombre: "asc" } });
+  return prisma.categoria.findMany({ orderBy: [{ orden: "asc" }, { nombre: "asc" }] });
 }
 
 export async function obtenerProductos(params: { categoria?: string; busqueda?: string }) {

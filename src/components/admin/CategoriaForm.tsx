@@ -4,13 +4,14 @@ import { useState } from "react";
 import { crearCategoria, actualizarCategoria } from "@/actions/categorias.actions";
 
 type CategoriaFormProps = {
-  categoria?: { id: string; nombre: string; descripcion: string | null };
+  categoria?: { id: string; nombre: string; descripcion: string | null; orden: number };
   onDone?: () => void;
 };
 
 export function CategoriaForm({ categoria, onDone }: CategoriaFormProps) {
   const [nombre, setNombre] = useState(categoria?.nombre ?? "");
   const [descripcion, setDescripcion] = useState(categoria?.descripcion ?? "");
+  const [orden, setOrden] = useState(String(categoria?.orden ?? 0));
   const [error, setError] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
 
@@ -19,9 +20,10 @@ export function CategoriaForm({ categoria, onDone }: CategoriaFormProps) {
     setError(null);
     setEnviando(true);
 
+    const ordenNumerico = Number(orden) || 0;
     const resultado = categoria
-      ? await actualizarCategoria(categoria.id, nombre, descripcion)
-      : await crearCategoria(nombre, descripcion);
+      ? await actualizarCategoria(categoria.id, nombre, descripcion, ordenNumerico)
+      : await crearCategoria(nombre, descripcion, ordenNumerico);
 
     setEnviando(false);
 
@@ -33,6 +35,7 @@ export function CategoriaForm({ categoria, onDone }: CategoriaFormProps) {
     if (!categoria) {
       setNombre("");
       setDescripcion("");
+      setOrden("0");
     }
     onDone?.();
   }
@@ -52,6 +55,16 @@ export function CategoriaForm({ categoria, onDone }: CategoriaFormProps) {
           value={descripcion}
           onChange={(e) => setDescripcion(e.target.value)}
           placeholder="Descripción (opcional)"
+          className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+        />
+      </div>
+      <div className="sm:w-24">
+        <input
+          type="number"
+          value={orden}
+          onChange={(e) => setOrden(e.target.value)}
+          placeholder="Orden"
+          title="Orden de aparición (menor = primero)"
           className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
         />
       </div>

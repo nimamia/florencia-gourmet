@@ -9,6 +9,7 @@ type CategoriaRowProps = {
     id: string;
     nombre: string;
     descripcion: string | null;
+    orden: number;
     _count: { productos: number };
   };
 };
@@ -44,7 +45,9 @@ export function CategoriaRow({ categoria }: CategoriaRowProps) {
           {categoria.descripcion && (
             <p className="text-sm text-zinc-500">{categoria.descripcion}</p>
           )}
-          <p className="text-xs text-zinc-400">{categoria._count.productos} producto(s)</p>
+          <p className="text-xs text-zinc-400">
+            {categoria._count.productos} producto(s) · orden: {categoria.orden}
+          </p>
         </div>
         <div className="flex gap-3 text-sm">
           <button onClick={() => setEditando(true)} className="text-zinc-600 hover:text-rose-700">
