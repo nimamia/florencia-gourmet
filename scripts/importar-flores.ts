@@ -73,6 +73,48 @@ const PRODUCTOS: ProductoFlor[] = [
     archivos: ["Rosas_Preservadas_Rosa_Preservada_Tallo_Largo.jpg"],
   },
   {
+    slug: "rosa-titanic",
+    nombre: "Rosa Titanic",
+    descripcion: "Rosas importadas variedad Titanic, de tallo largo.",
+    archivos: ["Rosas_Rosa_Titanic.jpg"],
+  },
+  {
+    slug: "rosa-rojo-freedom",
+    nombre: "Rosa Rojo Freedom",
+    descripcion: "Rosas importadas variedad Freedom, color rojo intenso.",
+    archivos: ["Rosas_Rojo_Freedom.jpg"],
+  },
+  {
+    slug: "rosa-jessica",
+    nombre: "Rosa Jessica",
+    descripcion: "Rosas importadas variedad Jessica, de tallo largo.",
+    archivos: ["Rosas_Rosa_Jessica.jpg"],
+  },
+  {
+    slug: "rosa-hermosa",
+    nombre: "Rosa Hermosa",
+    descripcion: "Rosas importadas variedad Hermosa, de tallo largo.",
+    archivos: ["Rosas_Hermosa.jpg"],
+  },
+  {
+    slug: "rosa-rosado-shimmer",
+    nombre: "Rosa Rosado Shimmer",
+    descripcion: "Rosas importadas variedad Rosado Shimmer, tono rosado brillante.",
+    archivos: ["Rosas_Rosado_Shimmer.jpg"],
+  },
+  {
+    slug: "rosas-amarillas",
+    nombre: "Rosas Amarillas",
+    descripcion: "Rosas importadas color amarillo, de tallo largo.",
+    archivos: ["Rosas_Rosas_Amarillas.jpg"],
+  },
+  {
+    slug: "rosa-esperance",
+    nombre: "Rosa Esperance",
+    descripcion: "Rosas importadas variedad Esperance, de tallo largo.",
+    archivos: ["Rosas_Esperance.jpg"],
+  },
+  {
     slug: "babyroses",
     nombre: "Babyroses",
     descripcion: "Babyroses importadas, ideales para ramos y arreglos florales.",
@@ -82,7 +124,13 @@ const PRODUCTOS: ProductoFlor[] = [
     slug: "baby-rosa",
     nombre: "Baby Rosa",
     descripcion: "Baby Rosa importada, flor pequeña ideal para complementar arreglos.",
-    archivos: ["Babyroses_Baby_Rosa.jpg"],
+    archivos: ["Babyroses_Baby_Rosa_01.jpg", "Babyroses_Baby_Rosa_02.jpg"],
+  },
+  {
+    slug: "babyroses-amarillo",
+    nombre: "Babyroses Amarillo",
+    descripcion: "Babyroses importadas, color amarillo.",
+    archivos: ["Babyroses_Babyroses_Amarillo.jpg"],
   },
   {
     slug: "lilium-oriental-sorbone",
@@ -113,6 +161,12 @@ const PRODUCTOS: ProductoFlor[] = [
     nombre: "Lilium Asiático Naranja Melón",
     descripcion: "Lilium asiático importado, tono naranja melón.",
     archivos: ["Lilium_Lilium_Asiatico_Naranja_Melon.jpg"],
+  },
+  {
+    slug: "lilium-oriental-table-dance-dalian",
+    nombre: "Lilium Oriental Table Dance/Dalian",
+    descripcion: "Lilium oriental variedad Table Dance/Dalian, importado.",
+    archivos: ["Lilium_Liliun_Oriental_Table_Dance_Dalian.jpg"],
   },
   {
     slug: "gerbera-importada",
@@ -149,6 +203,18 @@ const PRODUCTOS: ProductoFlor[] = [
     nombre: "Crisantemo Petruska",
     descripcion: "Crisantemo variedad Petruska, importado.",
     archivos: ["Crisantemo_Crisantemo_Petruska.jpg"],
+  },
+  {
+    slug: "crisantemo-andrea",
+    nombre: "Crisantemo Andrea",
+    descripcion: "Crisantemo variedad Andrea, importado.",
+    archivos: ["Crisantemo_Crisantemo_Andrea.jpg"],
+  },
+  {
+    slug: "tulipanes-importados",
+    nombre: "Tulipanes Importados",
+    descripcion: "Tulipanes importados de primera calidad.",
+    archivos: ["Tulipanes_Tulipanes_Importados.jpg"],
   },
 ];
 
