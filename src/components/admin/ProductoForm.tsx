@@ -19,6 +19,8 @@ type ProductoFormProps = {
     nombre: string;
     descripcion: string;
     precio: number;
+    precioPorMayor: number | null;
+    cantidadPorMayor: number | null;
     stock: number;
     categoriaId: string;
     estado: string;
@@ -107,6 +109,41 @@ export function ProductoForm({ categorias, producto }: ProductoFormProps) {
           />
         </div>
       </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            Precio por mayor (S/)
+          </label>
+          <input
+            name="precioPorMayor"
+            type="number"
+            step="0.01"
+            min="0"
+            defaultValue={producto?.precioPorMayor ?? ""}
+            placeholder="Opcional"
+            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+          />
+        </div>
+        <div>
+          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            Cantidad por mayor
+          </label>
+          <input
+            name="cantidadPorMayor"
+            type="number"
+            min="1"
+            step="1"
+            defaultValue={producto?.cantidadPorMayor ?? ""}
+            placeholder="Opcional, ej. 100"
+            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+          />
+        </div>
+      </div>
+      <p className="-mt-2 text-xs text-zinc-500">
+        Completa ambos campos solo si el producto tiene un precio especial al comprar por mayor
+        (ej. S/160 por el ciento de 100 unidades). Déjalos vacíos si no aplica.
+      </p>
 
       <div>
         <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Categoría</label>

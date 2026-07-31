@@ -31,6 +31,7 @@ export async function obtenerProductos(params: { categoria?: string; busqueda?: 
   return productos.map((producto) => ({
     ...producto,
     precio: Number(producto.precio),
+    precioPorMayor: producto.precioPorMayor ? Number(producto.precioPorMayor) : null,
   }));
 }
 
@@ -48,6 +49,7 @@ export async function obtenerProductoPorSlug(slug: string) {
   return {
     ...producto,
     precio: Number(producto.precio),
+    precioPorMayor: producto.precioPorMayor ? Number(producto.precioPorMayor) : null,
   };
 }
 
@@ -57,7 +59,11 @@ export async function obtenerProductosAdmin() {
     orderBy: { createdAt: "desc" },
   });
 
-  return productos.map((producto) => ({ ...producto, precio: Number(producto.precio) }));
+  return productos.map((producto) => ({
+    ...producto,
+    precio: Number(producto.precio),
+    precioPorMayor: producto.precioPorMayor ? Number(producto.precioPorMayor) : null,
+  }));
 }
 
 export async function obtenerProductoPorId(id: string) {
@@ -68,16 +74,25 @@ export async function obtenerProductoPorId(id: string) {
 
   if (!producto) return null;
 
-  return { ...producto, precio: Number(producto.precio) };
+  return {
+    ...producto,
+    precio: Number(producto.precio),
+    precioPorMayor: producto.precioPorMayor ? Number(producto.precioPorMayor) : null,
+  };
 }
 
 function leerDatosFormularioProducto(formData: FormData) {
+  const precioPorMayorRaw = String(formData.get("precioPorMayor") ?? "").trim();
+  const cantidadPorMayorRaw = String(formData.get("cantidadPorMayor") ?? "").trim();
+
   return {
     nombre: String(formData.get("nombre") ?? "").trim(),
     descripcion: String(formData.get("descripcion") ?? "").trim(),
     precio: Number(formData.get("precio")),
     stock: Number(formData.get("stock")),
     categoriaId: String(formData.get("categoriaId") ?? ""),
+    precioPorMayor: precioPorMayorRaw ? Number(precioPorMayorRaw) : null,
+    cantidadPorMayor: cantidadPorMayorRaw ? Number(cantidadPorMayorRaw) : null,
     imagenes: formData
       .getAll("imagenes")
       .filter((archivo): archivo is File => archivo instanceof File && archivo.size > 0),
@@ -89,11 +104,22 @@ function validarDatosProducto(datos: {
   categoriaId: string;
   precio: number;
   stock: number;
+  precioPorMayor: number | null;
+  cantidadPorMayor: number | null;
 }): string | null {
   if (!datos.nombre || datos.nombre.length < 3) return "Ingresa un nombre válido.";
   if (!datos.categoriaId) return "Selecciona una categoría.";
   if (!Number.isFinite(datos.precio) || datos.precio <= 0) return "Ingresa un precio válido.";
   if (!Number.isFinite(datos.stock) || datos.stock < 0) return "Ingresa un stock válido.";
+  if (datos.precioPorMayor !== null && (!Number.isFinite(datos.precioPorMayor) || datos.precioPorMayor <= 0)) {
+    return "Ingresa un precio por mayor válido.";
+  }
+  if (datos.cantidadPorMayor !== null && (!Number.isInteger(datos.cantidadPorMayor) || datos.cantidadPorMayor <= 0)) {
+    return "Ingresa una cantidad por mayor válida.";
+  }
+  if ((datos.precioPorMayor === null) !== (datos.cantidadPorMayor === null)) {
+    return "El precio por mayor y la cantidad por mayor van juntos: completa ambos o ninguno.";
+  }
   return null;
 }
 
@@ -118,6 +144,8 @@ export async function crearProducto(formData: FormData): Promise<ResultadoAccion
         precio: datos.precio,
         stock: datos.stock,
         categoriaId: datos.categoriaId,
+        precioPorMayor: datos.precioPorMayor,
+        cantidadPorMayor: datos.cantidadPorMayor,
         imagenes: { create: urls.map((url, index) => ({ url, orden: index })) },
       },
     });
@@ -158,6 +186,8 @@ export async function actualizarProducto(
       precio: datos.precio,
       stock: datos.stock,
       categoriaId: datos.categoriaId,
+      precioPorMayor: datos.precioPorMayor,
+      cantidadPorMayor: datos.cantidadPorMayor,
       estado,
       imagenes: {
         create: urlsNuevas.map((url, index) => ({ url, orden: imagenesExistentes + index })),

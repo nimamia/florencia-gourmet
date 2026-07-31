@@ -61,6 +61,11 @@ export default async function ProductoDetallePage({
         <p className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
           {formatPrice(producto.precio)}
         </p>
+        {producto.precioPorMayor && producto.cantidadPorMayor && (
+          <p className="text-sm text-zinc-500">
+            Por mayor ({producto.cantidadPorMayor} unidades): {formatPrice(producto.precioPorMayor)}
+          </p>
+        )}
         <p className="text-zinc-600 dark:text-zinc-400">{producto.descripcion}</p>
         <p className="text-sm text-zinc-500">
           {producto.stock > 0 ? `${producto.stock} disponibles` : "Agotado"}

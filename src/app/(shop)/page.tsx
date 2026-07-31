@@ -51,6 +51,8 @@ export default async function Home() {
                 slug={producto.slug}
                 nombre={producto.nombre}
                 precio={producto.precio}
+                precioPorMayor={producto.precioPorMayor}
+                cantidadPorMayor={producto.cantidadPorMayor}
                 imagenUrl={producto.imagenes[0]?.url}
                 stock={producto.stock}
               />

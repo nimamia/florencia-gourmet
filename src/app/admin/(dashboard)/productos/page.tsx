@@ -35,7 +35,14 @@ export default async function AdminProductosPage() {
               <tr key={producto.id} className="border-b border-zinc-100 dark:border-zinc-900">
                 <td className="py-2 pr-4">{producto.nombre}</td>
                 <td className="pr-4">{producto.categoria.nombre}</td>
-                <td className="pr-4">{formatPrice(producto.precio)}</td>
+                <td className="pr-4">
+                  {formatPrice(producto.precio)}
+                  {producto.precioPorMayor && producto.cantidadPorMayor && (
+                    <div className="text-xs text-zinc-500">
+                      Mayor ({producto.cantidadPorMayor}u): {formatPrice(producto.precioPorMayor)}
+                    </div>
+                  )}
+                </td>
                 <td className="pr-4">{producto.stock}</td>
                 <td className="pr-4">{producto.estado === "ACTIVO" ? "Activo" : "Inactivo"}</td>
                 <td className="flex gap-3 py-2">

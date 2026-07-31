@@ -6,11 +6,21 @@ type ProductCardProps = {
   slug: string;
   nombre: string;
   precio: number;
+  precioPorMayor?: number | null;
+  cantidadPorMayor?: number | null;
   imagenUrl?: string;
   stock: number;
 };
 
-export function ProductCard({ slug, nombre, precio, imagenUrl, stock }: ProductCardProps) {
+export function ProductCard({
+  slug,
+  nombre,
+  precio,
+  precioPorMayor,
+  cantidadPorMayor,
+  imagenUrl,
+  stock,
+}: ProductCardProps) {
   return (
     <Link
       href={`/productos/${slug}`}
@@ -43,6 +53,11 @@ export function ProductCard({ slug, nombre, precio, imagenUrl, stock }: ProductC
         <p className="mt-auto text-base font-semibold text-rose-700 dark:text-rose-400">
           {formatPrice(precio)}
         </p>
+        {precioPorMayor && cantidadPorMayor && (
+          <p className="text-xs text-zinc-500">
+            Por mayor ({cantidadPorMayor}u): {formatPrice(precioPorMayor)}
+          </p>
+        )}
       </div>
     </Link>
   );
