@@ -1,0 +1,34 @@
+{
+  "bocaditos_salados": [
+    { "nombre": "Empanaditas de Pollo", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Empanaditas de Carne", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Empanaditas de Jamón con queso", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Empanaditas de Pizza", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Enrollados de Hotdog", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Petipan de pollo / pollo-apio / pollo-durazno", "precio_medio_ciento_50u": 110, "precio_ciento_100u": 200 },
+    { "nombre": "Triplecitos de queso pollo / pollo jamón / jamón queso", "precio_medio_ciento_50u": 110, "precio_ciento_100u": 200 },
+    { "nombre": "Empanadas grandes de Ají de Gallina / Lomo Saltado", "precio_unidad": 12 },
+    { "nombre": "3 Empanadas grandes de Ají de Gallina / Lomo Saltado", "precio": 30 },
+    { "nombre": "Pote de empanadas medianas de Ají de Gallina / Lomo Saltado (a partir de 6 unidades)", "precio": 40 }
+  ],
+  "bocaditos_dulces": [
+    { "nombre": "Empanaditas de Piña", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Empanaditas de Manzana", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Trufas de chocolate de coco y/o grageas", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Pionoñitos de manjar blanco", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Tartaletitas de fresa / limón", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Pye de manzana / piña", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Mini brownies", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Alfajorcitos de manjar blanco", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Conitos de manjar", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Chocolatitos rellenos de manjar / pisco / pasas", "precio_medio_ciento_50u": 86, "precio_ciento_100u": 160 },
+    { "nombre": "Pote de 12 alfajores medianos de manjar blanco", "precio": 30 },
+    { "nombre": "Pote de 20 rosquitas de anís", "precio": 24 },
+    { "nombre": "Pote de 2 pye mediano", "precio": 12 }
+  ],
+  "combos_mixtos": [
+    { "nombre": "Pote de 6 empanadas medianas (carne / pollo / jamón con queso / piña / manzana / pizza)", "precio": 30 },
+    { "nombre": "Docena (12) de empanadas grandes (carne / pollo / jamón con queso / piña / manzana / pizza)", "precio": 84 },
+    { "nombre": "Pote personal de 2 empanadas medianas + 1 alfajor", "precio": 13 }
+  ]
+}

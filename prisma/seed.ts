@@ -13,71 +13,7 @@ const categorias = [
   { nombre: "Bocaditos salados", slug: "bocaditos-salados" },
 ];
 
-const productos = [
-  {
-    categoriaSlug: "bocaditos-dulces",
-    nombre: "Caja de Alfajores Artesanales",
-    slug: "caja-alfajores-artesanales",
-    descripcion: "Caja de 12 alfajores artesanales rellenos de manjar blanco.",
-    precio: "45.00",
-    stock: 30,
-    imagenes: ["https://placehold.co/600x400.png?text=Alfajores"],
-  },
-  {
-    categoriaSlug: "bocaditos-dulces",
-    nombre: "Brownies Gourmet",
-    slug: "brownies-gourmet",
-    descripcion: "Caja de 6 brownies gourmet de chocolate belga.",
-    precio: "38.00",
-    stock: 25,
-    imagenes: ["https://placehold.co/600x400.png?text=Brownies"],
-  },
-  {
-    categoriaSlug: "bocaditos-dulces",
-    nombre: "Macarons Surtidos",
-    slug: "macarons-surtidos",
-    descripcion: "Caja de 12 macarons franceses en sabores surtidos.",
-    precio: "65.00",
-    stock: 18,
-    imagenes: ["https://placehold.co/600x400.png?text=Macarons"],
-  },
-  {
-    categoriaSlug: "bocaditos-dulces",
-    nombre: "Cupcakes Decorados",
-    slug: "cupcakes-decorados",
-    descripcion: "Caja de 6 cupcakes decorados a mano.",
-    precio: "48.00",
-    stock: 20,
-    imagenes: ["https://placehold.co/600x400.png?text=Cupcakes"],
-  },
-  {
-    categoriaSlug: "bocaditos-salados",
-    nombre: "Tabla de Quesos y Embutidos",
-    slug: "tabla-quesos-embutidos",
-    descripcion: "Tabla gourmet con selección de quesos y embutidos importados.",
-    precio: "95.00",
-    stock: 12,
-    imagenes: ["https://placehold.co/600x400.png?text=Tabla+Quesos"],
-  },
-  {
-    categoriaSlug: "bocaditos-salados",
-    nombre: "Canapés Surtidos",
-    slug: "canapes-surtidos",
-    descripcion: "Bandeja de 24 canapés surtidos para compartir.",
-    precio: "70.00",
-    stock: 15,
-    imagenes: ["https://placehold.co/600x400.png?text=Canapes"],
-  },
-  {
-    categoriaSlug: "bocaditos-salados",
-    nombre: "Empanaditas Gourmet",
-    slug: "empanaditas-gourmet",
-    descripcion: "Docena de empanaditas gourmet horneadas, sabores surtidos.",
-    precio: "55.00",
-    stock: 22,
-    imagenes: ["https://placehold.co/600x400.png?text=Empanaditas"],
-  },
-];
+const productos: never[] = [];
 
 async function main() {
   const categoriaIdPorSlug = new Map<string, string>();
