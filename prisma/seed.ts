@@ -15,42 +15,6 @@ const categorias = [
 
 const productos = [
   {
-    categoriaSlug: "flores-importadas",
-    nombre: "Ramo de Tulipanes Holandeses",
-    slug: "ramo-tulipanes-holandeses",
-    descripcion: "Ramo de 15 tulipanes holandeses de importación, en tonos variados.",
-    precio: "89.90",
-    stock: 15,
-    imagenes: ["https://placehold.co/600x400.png?text=Tulipanes"],
-  },
-  {
-    categoriaSlug: "flores-importadas",
-    nombre: "Rosas Ecuatorianas Premium",
-    slug: "rosas-ecuatorianas-premium",
-    descripcion: "Docena de rosas ecuatorianas de tallo largo, variedad premium.",
-    precio: "120.00",
-    stock: 10,
-    imagenes: ["https://placehold.co/600x400.png?text=Rosas"],
-  },
-  {
-    categoriaSlug: "flores-importadas",
-    nombre: "Girasoles Importados",
-    slug: "girasoles-importados",
-    descripcion: "Ramo de 6 girasoles frescos importados.",
-    precio: "75.00",
-    stock: 20,
-    imagenes: ["https://placehold.co/600x400.png?text=Girasoles"],
-  },
-  {
-    categoriaSlug: "flores-importadas",
-    nombre: "Orquídeas Phalaenopsis",
-    slug: "orquideas-phalaenopsis",
-    descripcion: "Orquídea Phalaenopsis en maceta decorativa, importada.",
-    precio: "150.00",
-    stock: 8,
-    imagenes: ["https://placehold.co/600x400.png?text=Orquideas"],
-  },
-  {
     categoriaSlug: "bocaditos-dulces",
     nombre: "Caja de Alfajores Artesanales",
     slug: "caja-alfajores-artesanales",
