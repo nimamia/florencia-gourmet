@@ -6,10 +6,4 @@ export const siteConfig = {
     montoMinimoGratis: 150,
     costoFijo: 15,
   },
-  contacto: {
-    whatsapp: "51904330440",
-    whatsappDisplay: "(51) 904-330-440",
-    instagram: "florenciagourmet9",
-    ubicacion: "Lima, Perú",
-  },
 };
