@@ -9,8 +9,7 @@ const prisma = new PrismaClient({ adapter });
 
 const categorias = [
   { nombre: "Flores importadas", slug: "flores-importadas" },
-  { nombre: "Bocaditos dulces", slug: "bocaditos-dulces" },
-  { nombre: "Bocaditos salados", slug: "bocaditos-salados" },
+  { nombre: "Dulces y Salados", slug: "dulces-y-salados" },
 ];
 
 async function main() {

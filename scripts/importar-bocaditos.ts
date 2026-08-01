@@ -70,50 +70,44 @@ async function main() {
     fs.readFileSync(path.resolve(__dirname, "data/bocaditos.json"), "utf-8"),
   );
 
-  const categorias = [
-    { slug: "bocaditos-salados", nombre: "Bocaditos salados", orden: 1, items: data.bocaditos_salados },
-    { slug: "bocaditos-dulces", nombre: "Bocaditos dulces", orden: 2, items: data.bocaditos_dulces },
-    { slug: "combos", nombre: "Combos", orden: 3, items: data.combos_mixtos },
-  ];
+  const categoria = await prisma.categoria.upsert({
+    where: { slug: "dulces-y-salados" },
+    update: {},
+    create: { nombre: "Dulces y Salados", slug: "dulces-y-salados", orden: 1 },
+  });
+
+  const items = [...data.bocaditos_salados, ...data.bocaditos_dulces, ...data.combos_mixtos];
 
   let total = 0;
 
-  for (const cat of categorias) {
-    const categoria = await prisma.categoria.upsert({
-      where: { slug: cat.slug },
-      update: {},
-      create: { nombre: cat.nombre, slug: cat.slug, orden: cat.orden },
+  for (const item of items) {
+    const p = construirProducto(item);
+
+    await prisma.producto.upsert({
+      where: { slug: p.slug },
+      update: {
+        nombre: p.nombre,
+        descripcion: p.descripcion,
+        precio: p.precio,
+        precioPorMayor: p.precioPorMayor,
+        cantidadPorMayor: p.cantidadPorMayor,
+        categoriaId: categoria.id,
+      },
+      create: {
+        nombre: p.nombre,
+        slug: p.slug,
+        descripcion: p.descripcion,
+        precio: p.precio,
+        precioPorMayor: p.precioPorMayor,
+        cantidadPorMayor: p.cantidadPorMayor,
+        stock: STOCK_DEFAULT,
+        estado: "ACTIVO",
+        categoriaId: categoria.id,
+      },
     });
 
-    for (const item of cat.items) {
-      const p = construirProducto(item);
-
-      await prisma.producto.upsert({
-        where: { slug: p.slug },
-        update: {
-          nombre: p.nombre,
-          descripcion: p.descripcion,
-          precio: p.precio,
-          precioPorMayor: p.precioPorMayor,
-          cantidadPorMayor: p.cantidadPorMayor,
-          categoriaId: categoria.id,
-        },
-        create: {
-          nombre: p.nombre,
-          slug: p.slug,
-          descripcion: p.descripcion,
-          precio: p.precio,
-          precioPorMayor: p.precioPorMayor,
-          cantidadPorMayor: p.cantidadPorMayor,
-          stock: STOCK_DEFAULT,
-          estado: "ACTIVO",
-          categoriaId: categoria.id,
-        },
-      });
-
-      total += 1;
-      console.log(`OK  [${cat.nombre}]  ${p.nombre}  S/${p.precio}${p.precioPorMayor ? ` (por mayor S/${p.precioPorMayor} x${p.cantidadPorMayor})` : ""}`);
-    }
+    total += 1;
+    console.log(`OK  ${p.nombre}  S/${p.precio}${p.precioPorMayor ? ` (por mayor S/${p.precioPorMayor} x${p.cantidadPorMayor})` : ""}`);
   }
 
   console.log(`\nListo: ${total} productos de bocaditos importados/actualizados.`);
