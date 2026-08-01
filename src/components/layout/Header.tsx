@@ -10,8 +10,20 @@ export function Header() {
           {siteConfig.nombre}
         </Link>
         <nav className="flex items-center gap-4 text-sm">
+          <Link href="/" className="hover:text-rose-700">
+            Inicio
+          </Link>
+          <Link href="/productos?categoria=flores-importadas" className="hover:text-rose-700">
+            Flores
+          </Link>
           <Link href="/productos" className="hover:text-rose-700">
-            Productos
+            Dulces &amp; Salados
+          </Link>
+          <Link href="/nosotros" className="hover:text-rose-700">
+            Nosotros
+          </Link>
+          <Link href="/contacto" className="hover:text-rose-700">
+            Contacto
           </Link>
           <Link href="/carrito" className="flex items-center hover:text-rose-700">
             Carrito
