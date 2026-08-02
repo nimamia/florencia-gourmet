@@ -1,12 +1,7 @@
 import Link from "next/link";
-import { obtenerProductos } from "@/actions/productos.actions";
-import { ProductCard } from "@/components/catalogo/ProductCard";
 import { siteConfig } from "@/config/site";
 
-export default async function Home() {
-  const productos = await obtenerProductos({});
-  const destacados = productos.slice(0, 4);
-
+export default function Home() {
   return (
     <div className="flex flex-col gap-12">
       <section className="-mx-4 flex flex-col items-center gap-4 bg-gradient-to-br from-rose-100 via-orange-50 to-amber-100 px-4 py-16 text-center dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-900">
@@ -39,26 +34,6 @@ export default async function Home() {
           </Link>
         </div>
       </section>
-
-      {destacados.length > 0 && (
-        <section className="flex flex-col gap-4">
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Novedades</h2>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {destacados.map((producto) => (
-              <ProductCard
-                key={producto.id}
-                slug={producto.slug}
-                nombre={producto.nombre}
-                precio={producto.precio}
-                precioPorMayor={producto.precioPorMayor}
-                cantidadPorMayor={producto.cantidadPorMayor}
-                imagenUrl={producto.imagenes[0]?.url}
-                stock={producto.stock}
-              />
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }
