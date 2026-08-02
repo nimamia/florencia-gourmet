@@ -1,14 +1,10 @@
 import Link from "next/link";
-import { obtenerCategorias, obtenerProductos } from "@/actions/productos.actions";
+import { obtenerProductos } from "@/actions/productos.actions";
 import { ProductCard } from "@/components/catalogo/ProductCard";
 import { siteConfig } from "@/config/site";
 
 export default async function Home() {
-  const [categorias, productos] = await Promise.all([
-    obtenerCategorias(),
-    obtenerProductos({}),
-  ]);
-
+  const productos = await obtenerProductos({});
   const destacados = productos.slice(0, 4);
 
   return (
@@ -41,21 +37,6 @@ export default async function Home() {
           >
             Ver dulces y salados
           </Link>
-        </div>
-      </section>
-
-      <section className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Categorías</h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {categorias.map((categoria) => (
-            <Link
-              key={categoria.slug}
-              href={`/productos?categoria=${categoria.slug}`}
-              className="rounded-lg border border-zinc-200 p-6 text-center font-medium text-zinc-800 transition hover:border-rose-700 hover:text-rose-700 dark:border-zinc-800 dark:text-zinc-200"
-            >
-              {categoria.nombre}
-            </Link>
-          ))}
         </div>
       </section>
 
