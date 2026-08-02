@@ -1,6 +1,5 @@
-import { obtenerCategorias, obtenerProductos } from "@/actions/productos.actions";
+import { obtenerProductos } from "@/actions/productos.actions";
 import { ProductCard } from "@/components/catalogo/ProductCard";
-import { FiltroCategoria } from "@/components/catalogo/FiltroCategoria";
 import { Buscador } from "@/components/catalogo/Buscador";
 
 export default async function ProductosPage({
@@ -10,15 +9,11 @@ export default async function ProductosPage({
 }) {
   const { categoria, busqueda } = await searchParams;
 
-  const [categorias, productos] = await Promise.all([
-    obtenerCategorias(),
-    obtenerProductos({ categoria, busqueda }),
-  ]);
+  const productos = await obtenerProductos({ categoria, busqueda });
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <FiltroCategoria categorias={categorias} categoriaActiva={categoria} busqueda={busqueda} />
+      <div className="flex justify-end">
         <div className="sm:w-72">
           <Buscador valorInicial={busqueda} />
         </div>
